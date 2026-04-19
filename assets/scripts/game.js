@@ -35,10 +35,15 @@ let game = {
             this.lockMode = true;
             return true;
         }
+    },
 
+
+    checkGameOver() {
+        return this.cards.every(card => card.flipped);
     },
 
     checkMatch: function () {
+        this.classList.add("match");
         if (!this.firstCard || !this.secondCard) {
             return false;
         }
@@ -60,10 +65,6 @@ let game = {
 
         return this.cards.filter(card => !card.flipped).length == 0;
     },
-
-
-
-
 
     createCardsFromTechs: function () {
 
@@ -88,7 +89,6 @@ let game = {
             icon: tech,
             flipped: false,
         }]
-
     },
 
     createIdWithTech: function (tech) {
@@ -106,9 +106,5 @@ let game = {
 
             [this.cards[randomIndex], this.cards[currentIndex]] = [this.cards[currentIndex], this.cards[randomIndex]]
         }
-
     }
-
-
-
 }

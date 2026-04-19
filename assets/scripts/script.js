@@ -30,8 +30,6 @@ function createCardContent(card, cardElement) {
 
     createCardFace(FRONT, card, cardElement);
     createCardFace(BACK, card, cardElement);
-
-
 }
 
 function createCardFace(face, card, element) {
@@ -52,6 +50,14 @@ function createCardFace(face, card, element) {
 
 function flipCard() {
 
+    
+if (game.checkGameOver()) {
+    setTimeout(() => {
+        let gameOverLayer = document.getElementById("gameOver");
+        gameOverLayer.style.display = 'flex';
+    }, 500);
+}
+
     if (game.setCard(this.id)) {
 
         this.classList.add("flip");
@@ -63,6 +69,7 @@ function flipCard() {
                     gameOverLayer.style.display = 'flex';
                 }
             } else {
+                
                 setTimeout(() => {
                     let firstCardView = document.getElementById(game.firstCard.id);
                     let secondCardView = document.getElementById(game.secondCard.id);
